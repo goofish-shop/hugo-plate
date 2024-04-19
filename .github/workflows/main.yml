@@ -48,14 +48,14 @@ jobs:
           rm go${{ env.GO_VERSION }}.linux-amd64.tar.gz
           go version
 
-      - name: Setup Project
-        run: |
-            npm install -g npx --force
-            npm install -g postcss-cli
-            npm install tailwindcss@latest
+      # - name: Setup Project
+      #   run: |
+      #       npm install -g npx --force
+      #       npm install -g postcss-cli
+      #       npm install tailwindcss@latest
 
-      # - name: Install npm dependencies
-      #   run: npm install
+      - name: Install npm dependencies
+        run: npm install
 
       # - name: Publish to GitHub Pages
       #   run: npm run build
@@ -77,7 +77,7 @@ jobs:
   #       uses: actions/deploy-pages@v4
 
       - name: Build
-        run: hugo --minify
+        run: npm run build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.2
         with:

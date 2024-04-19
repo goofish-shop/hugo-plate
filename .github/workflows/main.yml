@@ -63,12 +63,22 @@ jobs:
           path: ./public
 
   # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  # deploy:
+  #   environment:
+  #     name: github-pages
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4
+
+      - name: Build
+        run: hugo --minify
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.4.2
+        with:
+            branch: gh-pages
+            folder: public
+            clean: true
+            single-commit: true
